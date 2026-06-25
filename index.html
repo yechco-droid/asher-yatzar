@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="אשר יצר" />
+  <title>אשר יצר</title>
+
+  <link rel="manifest" href="manifest.json" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700;900&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      font-family: 'Frank Ruhl Libre', 'Times New Roman', serif;
+      color: #f5ecd7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: 900;
+      color: #f0e6c8;
+      text-shadow: 0 0 20px rgba(255,215,0,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    .subtitle {
+      color: rgba(240,230,200,0.4);
+      font-size: 13px;
+      margin: 10px 0 0 0;
+      text-align: center;
+    }
+
+    .card {
+      margin: 16px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 20px;
+      border: 1px solid rgba(255,215,0,0.18);
+      padding: 32px 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+      max-width: 520px;
+      width: calc(100% - 32px);
+    }
+
+    .prayer {
+      font-size: 30px;
+      line-height: 2.1;
+      text-align: center;
+      white-space: pre-line;
+      color: #f5ecd7;
+      text-shadow: 0 1px 8px rgba(255,215,0,0.1);
+      transition: font-size 0.25s ease;
+      unicode-bidi: embed;
+    }
+
+    .controls {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: calc(100% - 32px);
+      max-width: 520px;
+    }
+
+    .controls-label {
+      color: rgba(240,230,200,0.55);
+      font-size: 14px;
+    }
+
+    .size-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .size-btn {
+      padding: 10px 18px;
+      border-radius: 12px;
+      border: 2px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: rgba(240,230,200,0.6);
+      font-size: 15px;
+      font-family: 'Frank Ruhl Libre', serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .size-btn.active {
+      border-color: #f0c040;
+      background: rgba(240,192,64,0.18);
+      color: #f0c040;
+      font-weight: 700;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .slider-row span:first-child { font-size: 14px; color: rgba(240,230,200,0.45); }
+    .slider-row span:last-child  { font-size: 24px; color: rgba(240,230,200,0.45); }
+
+    input[type=range] {
+      flex: 1;
+      accent-color: #f0c040;
+      cursor: pointer;
+      height: 6px;
+    }
+
+    .divider {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: calc(100% - 64px);
+      max-width: 460px;
+    }
+
+    .divider-line { flex: 1; height: 1px; background: rgba(255,215,0,0.15); }
+    .divider-star { color: rgba(255,215,0,0.4); font-size: 16px; }
+
+    footer {
+      color: rgba(240,230,200,0.3);
+      font-size: 12px;
+      margin-top: 14px;
+      text-align: center;
+      padding: 0 24px 40px;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span>✡️</span>
+    <h1>אַשֵּׁר יָצַר</h1>
+    <span>✡️</span>
+  </header>
+
+  <p class="subtitle">גלול למטה לקרוא את הברכה במלואה</p>
+
+  <div class="card">
+    <p class="prayer" id="prayer" lang="he">בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם,
+אֲשֶׁר יָצַר אֶת הָאָדָם בְּחָכְמָה,
+וּבָרָא בוֹ נְקָבִים נְקָבִים
+חֲלוּלִים חֲלוּלִים.
+גָּלוּי וְיָדוּעַ לִפְנֵי כִסֵּא כְבוֹדֶךָ
+שֶׁאִם יִפָּתֵחַ אֶחָד מֵהֶם
+אוֹ יִסָּתֵם אֶחָד מֵהֶם,
+אִי אֶפְשַׁר לְהִתְקַיֵּם
+וְלַעֲמוֹד לְפָנֶיךָ.
+בָּרוּךְ אַתָּה יְיָ,
+רוֹפֵא כָל בָּשָׂר
+וּמַפְלִיא לַעֲשׂוֹת.</p>
+  </div>
+
+  <div class="controls">
+    <p class="controls-label">גודל כתב</p>
+    <div class="size-buttons">
+      <button class="size-btn active" data-size="20" onclick="setSize(0,this)">קטן</button>
+      <button class="size-btn" data-size="30" onclick="setSize(1,this)">בינוני</button>
+      <button class="size-btn" data-size="40" onclick="setSize(2,this)">גדול</button>
+      <button class="size-btn" data-size="52" onclick="setSize(3,this)">ענק</button>
+    </div>
+    <div class="slider-row">
+      <span>א</span>
+      <input type="range" min="0" max="3" value="0" id="slider" oninput="sliderChange(this.value)" />
+      <span>א</span>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-star">✦</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <footer>ברכה זו נאמרת לאחר יציאה מבית הכסא</footer>
+
+  <script>
+    const sizes = [20, 30, 40, 52];
+    const prayer = document.getElementById('prayer');
+    const slider = document.getElementById('slider');
+    const buttons = document.querySelectorAll('.size-btn');
+    prayer.style.fontSize = sizes[0] + 'px';
+
+    function setSize(index, btn) {
+      prayer.style.fontSize = sizes[index] + 'px';
+      slider.value = index;
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function sliderChange(val) {
+      prayer.style.fontSize = sizes[val] + 'px';
+      buttons.forEach((b, i) => b.classList.toggle('active', i == val));
+    }
+
+    // Service Worker for offline use
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
